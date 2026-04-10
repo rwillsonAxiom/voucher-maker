@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "layout": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "description": "page width (mm)",
+          "type": "number"
+        },
+        "height": {
+          "description": "page height (mm)",
+          "type": "number"
+        },
+        "margin": {
+          "description": "page margins",
+          "type": "object",
+          "properties": {
+            "top": {
+              "description": "top page margin (mm)",
+              "type": "number"
+            },
+            "left": {
+              "description": "left page margin (mm)",
+              "type": "number"
+            },
+            "bottom": {
+              "description": "bottom page margin (mm)",
+              "type": "number"
+            },
+            "right": {
+              "description": "right page margin (mm)",
+              "type": "number"
+            }
+          },
+          "required": [
+            "top",
+            "left",
+            "bottom",
+            "right"
+          ],
+          "additionalProperties": false
+        },
+        "rows": {
+          "description": "rows of vouchers",
+          "type": "number"
+        },
+        "cols": {
+          "description": "columns of vouchers",
+          "type": "number"
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "margin",
+        "rows",
+        "cols"
+      ],
+      "additionalProperties": false
+    },
+    "pages": {
+      "description": "voucher front and back pdf file",
+      "type": "string"
+    },
+    "codes": {
+      "description": "voucher code options",
+      "type": "object",
+      "properties": {
+        "font": {
+          "description": "voucher code font ttf file",
+          "type": "string"
+        },
+        "x": {
+          "description": "voucher code bottom left offset fraction",
+          "type": "number"
+        },
+        "y": {
+          "description": "voucher code bottom bottom offset fraction",
+          "type": "number"
+        },
+        "height": {
+          "description": "voucher code height fraction",
+          "type": "number"
+        },
+        "file": {
+          "description": "voucher code csv file",
+          "type": "string"
+        }
+      },
+      "required": [
+        "font",
+        "x",
+        "y",
+        "height",
+        "file"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "layout",
+    "pages",
+    "codes"
+  ],
+  "additionalProperties": false
+}
