@@ -7,6 +7,9 @@ html {
 *::after {
   box-sizing: border-box;
 }
+*[hidden] {
+  display: none !important;
+}
 body {
   min-width: 20rem;
   min-height: 24rem;
@@ -20,20 +23,37 @@ body {
 body > h1 {
   margin: 0;
 }
-.stage-tab:has(> input:focus-visible) {
+label.tab-menu-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgb(0 0 0 / 25%);
+  border-bottom-color: rgb(0 0 0 / 35%);
+  background: rgb(0 0 0 / 4%);
+  color: rgb(0 0 0 / 70%);
+  cursor: pointer;
+}
+label.tab-menu-tab:has(> input:focus-visible) {
   outline: 2px solid Highlight;
   outline-offset: 2px;
 }
-custom-tab[hidden] {
-  display: none !important;
+label.tab-menu-tab:has(> input:checked) {
+  position: relative;
+  z-index: 1;
+  border-color: rgb(0 0 0 / 35%);
+  border-bottom-color: white;
+  background: white;
+  color: black;
 }
-.option-grid {
-  display: grid;
-  grid-template-columns: max-content minmax(12rem, 1fr);
-  gap: 0.5rem 1rem;
+label.tab-menu-tab:first-child {
+  border-start-start-radius: 0.25rem;
 }
-.collapsible.collapsed > :not(legend) {
-  display: none;
+label.tab-menu-tab:not(:first-child) {
+  margin-inline-start: -1px;
+}
+label.tab-menu-tab:last-child {
+  border-start-end-radius: 0.25rem;
 }
 .collapsible > legend > .collapse-toggle::before {
   content: "";
@@ -44,46 +64,51 @@ custom-tab[hidden] {
   transform: rotate(0.25turn);
   transition: transform 120ms ease;
 }
+.collapsible.collapsed > :not(legend) {
+  display: none;
+}
 .collapsible.collapsed > legend > .collapse-toggle::before {
   transform: rotate(0);
+}
+.option-grid {
+  display: grid;
+  grid-template-columns: auto auto minmax(12rem, 1fr);
+  gap: 0.5rem 1rem;
 }
 .option-grid fieldset {
   display: grid;
   grid-column: 1/-1;
-  grid-template-columns: subgrid;
+  grid-template-columns: auto auto minmax(12rem, 1fr);
   gap: 0.35rem 1rem;
   min-width: 0;
   min-inline-size: 0;
-}
-.option-grid fieldset[hidden] {
-  display: none;
 }
 .option-grid legend {
   grid-column: 1/-1;
 }
 .option-grid label,
 .option-grid custom-field,
+.option-grid custom-input-field,
 .option-grid custom-file-field {
   display: grid;
   grid-column: 1/-1;
-  grid-template-columns: max-content minmax(12rem, 1fr);
+  grid-template-columns: subgrid;
   align-items: center;
   gap: 0.5rem 1rem;
 }
-.option-grid fieldset > label,
-.option-grid fieldset > custom-field,
-.option-grid fieldset > custom-file-field {
-  grid-template-columns: subgrid;
-}
 .option-grid label > span:first-child,
 .option-grid custom-field > .field-label,
+.option-grid custom-input-field > .field-label,
 .option-grid custom-file-field > .field-label {
-  grid-column: 1;
+  display: grid;
+  grid-column: 1/3;
+  grid-template-columns: subgrid;
 }
 .option-grid label > :not(span),
 .option-grid custom-field > .field-value,
+.option-grid custom-input-field > .field-value,
 .option-grid custom-file-field > .field-value {
-  grid-column: 2;
+  grid-column: -1;
   justify-self: stretch;
   min-width: 0;
 }
@@ -93,6 +118,9 @@ custom-tab[hidden] {
 .option-grid custom-field > .field-value > input:not([type=checkbox], [type=color], [type=file]),
 .option-grid custom-field > .field-value > select,
 .option-grid custom-field > .field-value > textarea,
+.option-grid custom-input-field > .field-value > input:not([type=checkbox], [type=color], [type=file]),
+.option-grid custom-input-field > .field-value > select,
+.option-grid custom-input-field > .field-value > textarea,
 .option-grid custom-file-field > .field-value > input:not([type=checkbox], [type=color], [type=file]),
 .option-grid custom-file-field > .field-value > select,
 .option-grid custom-file-field > .field-value > textarea {
@@ -105,9 +133,4 @@ custom-tab[hidden] {
 .fraction-input {
   appearance: textfield;
 }
-.fraction-input::-webkit-outer-spin-button,
-.fraction-input::-webkit-inner-spin-button {
-  margin: 0;
-  appearance: none;
-}
-/*# sourceMappingURL=src_index.deno-bundle-html.entry-OKQDRA7Q.css.map */
+/*# sourceMappingURL=src_index.deno-bundle-html.entry-L56ERDZJ.css.map */
